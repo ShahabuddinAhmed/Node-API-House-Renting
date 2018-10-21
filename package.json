@@ -1,0 +1,11 @@
+{
+  "name": "node.js-api-house-renting",
+  "version": "1.0.0",
+  "description": "A Node.js RESTfull API for House Renting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shahabuddin Ahmed",
+  "license": "ISC"
+}
