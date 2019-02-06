@@ -8,6 +8,6 @@ router.post('/register', adminController.registerAdmin);
 router.post('/login', adminController.loginAdmin);
 router.get('/:adminID', adminController.getOneAdmin);
 router.patch('/update/:adminID', adminController.updateAdmin);
-router.delete('/delete/:adminID', adminController.deteleteAdmin);
+router.delete('/delete/:adminID', adminController.deleteAdmin);
 
 module.exports = router;
