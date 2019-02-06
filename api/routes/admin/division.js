@@ -6,6 +6,6 @@ const divisionController = require('../../controller/admin/division');
 router.get('/all', divisionController.getAllDivision);
 router.post('/create', divisionController.createDivision);
 router.patch('/update/:divisionID', divisionController.updateDivision);
-router.delete('/delete/:divisionID', divisionController.deteleteDivision);
+router.delete('/delete/:divisionID', divisionController.deleteDivision);
 
 module.exports = router;
