@@ -8,7 +8,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, '../../../public/image');
+        cb(null, './public/image');
     },
     filename: function(req, file, cb) {
         cb(null, dateFormat('yyyymmddHHMMss').toString() + path.extname(file.originalname));
@@ -20,7 +20,8 @@ const upload = multer({ storage: storage });
 router.get('/all', houseAdsController.getAllHouseAds);
 router.post('/create', houseAdsController.createHouseAds);
 router.get('/:houseAdsID', houseAdsController.getOneHouseAds);
-router.patch('/update/:houseAdsID', houseAdsController.updateHouseAds);
+router.get('/user/:houseAdsID', houseAdsController.getUserHouseAds);
+router.patch('/update/:houseAdsID', upload.single('picture'), houseAdsController.updateHouseAds);
 router.delete('/delete/:houseAdsID', houseAdsController.deleteHouseAds);
 
 module.exports = router;
