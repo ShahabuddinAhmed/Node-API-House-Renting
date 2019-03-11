@@ -23,7 +23,7 @@ exports.getAllMaxMoney = (req, res, next) => {
 
 exports.getOneMaxMoney = (req, res, next) => {
     const id = req.params.maxMoneyID;
-    MaxMoneys.find({ maxMoneyName: { $gte : id} })
+    MaxMoneys.find({ maxMoneyName: { $gt : id} })
     .exec()
     .then(doc => {
         if(doc) {
