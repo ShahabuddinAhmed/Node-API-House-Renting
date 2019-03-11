@@ -23,7 +23,7 @@ exports.getAllMaxArea = (req, res, next) => {
 
 exports.getOneMaxArea = (req, res, next) => {
     const id = req.params.maxAreaID;
-    MaxAreas.find({ maxAreaName: { $gte : id} })
+    MaxAreas.find({ maxAreaName: { $gt : id} })
     .exec()
     .then(doc => {
         if(doc) {
