@@ -4,6 +4,7 @@ const dateFormat = require('dateformat');
 
 exports.getAllHouseAds = (req, res, next) => {
     HouseAdss.find()
+    .sort([['_date', -1]])
     .exec()
     .then(docs => {
         if(docs.length >=1) {
@@ -20,6 +21,61 @@ exports.getAllHouseAds = (req, res, next) => {
             message: err
         });
     });
+}
+
+exports.getSearchAds = (req, res, next) => {
+    if(req.body.location == '0') {
+        HouseAdss.find({
+            $and : [
+                { $and : [ { taka : { $gte: req.body.minMoney } }, { taka : { $lte: req.body.maxMoney } } ] },
+                { $and : [ { area : { $gte: req.body.minArea } }, { area : { $lte: req.body.maxArea } } ] },
+                { bedRoom : { $eq : req.body.roomNumber } },
+                { division : { $eq : req.body.district } }
+            ] 
+        })
+        .exec()
+        .then(docs => {
+            if(docs.length >=1) {
+                console.log("From database", docs);
+                res.status(200).json(docs);
+            } else {
+                res.status(200).json({
+                    message: "HouseAds document is empty."
+                });
+            }
+        })
+        .catch(err => {
+            res.status(200).json({
+                message: err
+            });
+        });
+    } else {
+        HouseAdss.find({
+            $and : [
+                { $and : [ { taka : { $gte: req.body.minMoney } }, { taka : { $lte: req.body.maxMoney } } ] },
+                { $and : [ { area : { $gte: req.body.minArea } }, { area : { $lte: req.body.maxArea } } ] },
+                { $and : [ { division : { $eq: req.body.district } }, { location : { $eq: req.body.location } } ] },
+                { bedRoom : { $eq : req.body.roomNumber } }
+            ] 
+        })
+        .exec()
+        .then(docs => {
+            if(docs.length >=1) {
+                console.log("From database", docs);
+                res.status(200).json(docs);
+            } else {
+                res.status(200).json({
+                    message: "HouseAds document is empty."
+                });
+            }
+        })
+        .catch(err => {
+            res.status(200).json({
+                message: err
+            });
+        });
+    }
+    
 }
 
 exports.createHouseAds = (req, res, next) => {
