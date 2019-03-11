@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/all', houseAdsController.getAllHouseAds);
+router.post('/search', houseAdsController.getSearchAds);
 router.post('/create', houseAdsController.createHouseAds);
 router.get('/:houseAdsID', houseAdsController.getOneHouseAds);
 router.get('/user/:houseAdsID', houseAdsController.getUserHouseAds);
