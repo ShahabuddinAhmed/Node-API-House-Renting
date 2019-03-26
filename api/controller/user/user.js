@@ -89,11 +89,12 @@ exports.loginUser = (req, res, next) => {
                 const token = jwt.sign(
                     {
                         userName: user[0].userName,
-                        userID: user[0]._id
+                        userID: user[0]._id,
+                        userRoll: 'User'
                     },
                     process.env.JWT_KEY,
                     {
-                        expiresIn: "1h"
+                        expiresIn: "15m"
                     }
                 );
                 return res.status(200).send({
