@@ -90,11 +90,12 @@ exports.loginAdmin = (req, res, next) => {
                 const token = jwt.sign(
                     {
                         adminName: admin[0].adminName,
-                        adminID: admin[0]._id
+                        adminID: admin[0]._id,
+                        roll: "Admin"
                     },
                     process.env.JWT_KEY,
                     {
-                        expiresIn: "1h"
+                        expiresIn: "15m"
                     }
                 );
                 return res.status(200).send({
