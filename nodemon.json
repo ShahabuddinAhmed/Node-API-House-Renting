@@ -1,6 +1,6 @@
 {
   "env": {
-    "password": "coust-counter",
+    "password": "House Renting",
     "JWT_KEY": "secret"
   }
 }
